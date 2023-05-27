@@ -5,7 +5,7 @@ import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.model.Note
 import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
-//diger yaratdigimiz NoteRepository'den inherit etdik
+//doing inheritance from the other NoteRepository
 class NoteRepositoryImpl(
     private val dao: NoteDao
 ) : NoteRepository{

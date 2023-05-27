@@ -1,7 +1,6 @@
 package com.urahimli.cleanarchitecturenoteapp.feature_note.domain.util
 
-//note'lari adina, rengine, tarixine gore ve her birinin daxilinde ascending ve ya descending olmasina..
-//gore siralayir
+//this class sortes our notes according to title, date, color order
 sealed class NoteOrder(val orderType: OrderType) {
 
     class Title(orderType: OrderType): NoteOrder(orderType)

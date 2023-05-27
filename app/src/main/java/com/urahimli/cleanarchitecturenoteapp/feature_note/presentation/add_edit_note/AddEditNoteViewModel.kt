@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCases,
-    savedStateHandle: SavedStateHandle    //navigation argument daxilinde var bunun
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _noteTitle = mutableStateOf(NoteTextFieldState(
@@ -34,15 +34,14 @@ class AddEditNoteViewModel @Inject constructor(
     private val _noteColor = mutableStateOf(Note.noteColors.random().toArgb())
     val noteColor: State<Int> = _noteColor
 
-    //bu 1 defe ucun gosterilen snackbar ucun isledilir, buna gore state yaratmaga ehtiyac yoxdur
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     private var currentNoteId : Int? = null
 
-    init {                 //noteId'ye gore diger ekranda note gorsenir, navArgumentle
+    init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
-            if (noteId != -1) {         //evvelden yazilmis note'a girende
+            if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also {note ->
                         currentNoteId = note.id
@@ -64,24 +63,24 @@ class AddEditNoteViewModel @Inject constructor(
     fun onEvent(event: AddEditNoteEvent) {
         when(event) {
             is AddEditNoteEvent.EnteredTitle -> {
-                _noteTitle.value = noteTitle.value.copy(      //girilen note'u aliriq
+                _noteTitle.value = noteTitle.value.copy(
                     text = event.value
                 )
             }
             is AddEditNoteEvent.ChangeTitleFocus -> {
                 _noteTitle.value = noteTitle.value.copy(
-                    isHintVisible = !event.focusState.isFocused &&    //ustune gelende(focus) gostermir hint'i
+                    isHintVisible = !event.focusState.isFocused &&
                             noteTitle.value.text.isBlank()
                 )
             }
             is AddEditNoteEvent.EnteredContent -> {
-                _noteContent.value = noteContent.value.copy(      //girilen note'u aliriq
+                _noteContent.value = noteContent.value.copy(
                     text = event.value
                 )
             }
             is AddEditNoteEvent.ChangeContentFocus -> {
                 _noteContent.value = noteContent.value.copy(
-                    isHintVisible = !event.focusState.isFocused &&    //ustune gelende(focus) gostermir hint'i
+                    isHintVisible = !event.focusState.isFocused &&
                             noteContent.value.text.isBlank()
                 )
             }
@@ -89,7 +88,7 @@ class AddEditNoteViewModel @Inject constructor(
                 _noteColor.value = event.color
             }
 
-            //save button'a basdiqda
+            //clicking save button
             is AddEditNoteEvent.SaveNote -> {
                 viewModelScope.launch {
                     try {
@@ -99,7 +98,7 @@ class AddEditNoteViewModel @Inject constructor(
                                 content = noteContent.value.text,
                                 timestamp = System.currentTimeMillis(),
                                 color = noteColor.value,
-                                id = currentNoteId  //eger null deyilse movcud note update olunur, tersinde de yeni note yaradir
+                                id = currentNoteId    //if not null -> create new one, else -> update note
                             )
                         )
                         _eventFlow.emit(UiEvent.SaveNote)

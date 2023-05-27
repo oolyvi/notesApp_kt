@@ -51,10 +51,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun AddEditNoteScreen(
     navController: NavController,
-    noteColor: Int,              //evvelden secilmis rengini gosterir,yeni secilen reng bir de deyismir
+    noteColor: Int,                         //color which is already selected
     viewModel: AddEditNoteViewModel = hiltViewModel()
 ) {
-    //states
+    //all states
     val titleState = viewModel.noteTitle.value
     val contentState = viewModel.noteContent.value
 
@@ -78,7 +78,7 @@ fun AddEditNoteScreen(
                     )
                 }
                 is AddEditNoteViewModel.UiEvent.SaveNote -> {
-                    navController.navigateUp()       //go back to note screen
+                    navController.navigateUp()       //going back to note screen
                 }
             }
         }
@@ -112,7 +112,7 @@ fun AddEditNoteScreen(
             ) {
                 Note.noteColors.forEach { color ->
                     val colorInt = color.toArgb()
-                    //reng secimi dairesinin uzerindeki secimi bildiren daire
+                    //border of color picker
                     Box(
                         modifier = Modifier
                             .size(50.dp)
@@ -121,7 +121,7 @@ fun AddEditNoteScreen(
                             .background(color)
                             .border(
                                 width = 3.dp,
-                                color = if (viewModel.noteColor.value == colorInt) {   //color secilende
+                                color = if (viewModel.noteColor.value == colorInt) {   //when color is selected
                                     Color.Black
                                 } else Color.Transparent,
                                 shape = CircleShape

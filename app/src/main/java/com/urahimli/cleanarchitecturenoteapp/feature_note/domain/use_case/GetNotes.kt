@@ -7,12 +7,12 @@ import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.util.OrderType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-//bu hissede hem get, hem de sort edirik note'larimizi
+//here we use gettting and sorting operations for notes
 class GetNotes(
     private val repository: NoteRepository
 ) {
     operator fun invoke(
-        noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)    //default olaraq DESCENDING etdik
+        noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)    //default is descending
     ): Flow<List<Note>> {
         return repository.getNotes().map { notes ->
             when(noteOrder.orderType) {

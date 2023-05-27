@@ -15,9 +15,9 @@ interface NoteDao {
     fun getNotes(): Flow<List<Note>>
 
     @Query("SELECT * FROM note WHERE id = :id")
-    suspend fun getNoteById(id: Int): Note?    //tek bir note'a tikladiqda icindekileri gormek ucun
+    suspend fun getNoteById(id: Int): Note?             //watching each note seperately
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)     //hem insert, hem update edir
+    @Insert(onConflict = OnConflictStrategy.REPLACE)    //doing insert and update
     suspend fun insertNote(note: Note)
 
     @Delete

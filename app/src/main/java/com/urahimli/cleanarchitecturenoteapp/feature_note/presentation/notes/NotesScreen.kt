@@ -48,9 +48,7 @@ fun NotesScreen(
     navController: NavController,
     viewModel: NotesViewModel = hiltViewModel()
 ) {
-    //deyise bilecek state'leri bura yaziriq / view model'in ozu de deyisir hemcinin
     val state = viewModel.state.value
-    //val scaffoldState = rememberScaffoldState()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     
@@ -70,7 +68,7 @@ fun NotesScreen(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            //en ust hisse
+            //top part
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -107,7 +105,7 @@ fun NotesScreen(
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            //note'larin list gorunumu
+            //view of listed notes
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.notes) { note ->
                     NoteItem(
@@ -115,21 +113,20 @@ fun NotesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                //navigate to add/edit note screen
-                                navController.navigate(        //evveldem alinmis argumentleri de gonderir
+                                //navigate to add_edit note screen
+                                navController.navigate(
                                     Screen.AddEditNoteScreen.route +
                                             "?noteId=${note.id}&noteColor=${note.color}"
                                 )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
-                            //undo button cixmasi ucun snackbar
                             scope.launch {
                                 val result = snackbarHostState.showSnackbar(
                                     message = "Note deleted",
                                     actionLabel = "Undo"
                                 )
-                                if (result == SnackbarResult.ActionPerformed) {  //undo'ya basdiqda restore note
+                                if (result == SnackbarResult.ActionPerformed) {  //restore when undo is clicked
                                     viewModel.onEvent(NotesEvent.RestoreNote)
                                 }
                             }

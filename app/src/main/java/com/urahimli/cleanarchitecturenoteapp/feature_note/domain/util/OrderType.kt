@@ -1,6 +1,6 @@
 package com.urahimli.cleanarchitecturenoteapp.feature_note.domain.util
 
-//ascending ve ya descending ola biler
+//order type can be ascending and descending
 sealed class OrderType {
     object Ascending: OrderType()
     object Descending: OrderType()

@@ -2,8 +2,8 @@ package com.urahimli.cleanarchitecturenoteapp.feature_note.domain.repository
 
 import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.model.Note
 import kotlinx.coroutines.flow.Flow
-                                //burada fake kimi yaradiriq repository'ni, bundan yardimci kimi istifade edirik..
-                                //kimi
+
+//this is like fake repository for using in some cases
 interface NoteRepository {
 
     fun getNotes(): Flow<List<Note>>

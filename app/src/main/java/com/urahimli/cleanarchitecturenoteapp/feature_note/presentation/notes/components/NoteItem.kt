@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
 import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.model.Note
 
-@Composable               //her bir note
+@Composable
 fun NoteItem(
     note: Note,
     modifier: Modifier = Modifier,
@@ -41,21 +41,21 @@ fun NoteItem(
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
             val clipPath = Path().apply {
-                lineTo(size.width - cutCornerSize.toPx(), 0f)  //1yani kitab vereqi kimidir deye...
-                lineTo(size.width, cutCornerSize.toPx())        //4 bir yanina xetler cekib o design edirik
+                lineTo(size.width - cutCornerSize.toPx(), 0f)    //book leaf effect
+                lineTo(size.width, cutCornerSize.toPx())
                 lineTo(size.width, size.height)
                 lineTo(0f, size.height)
                 close()
             }
             clipPath(clipPath) {
-                drawRoundRect(                      //normal 3 kenar ucun
+                drawRoundRect(                                  //ordinary 3 corners
                     color = Color(note.color),
                     size = size,
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
-                drawRoundRect(                      //kitab vereqi kenar ucun
+                drawRoundRect(                                  //book leaf corner
                     color = Color(
-                        ColorUtils.blendARGB(note.color, 0x000000, 0.2f)  //kenari tund olsun deye
+                        ColorUtils.blendARGB(note.color, 0x000000, 0.2f)
                     ),
                     topLeft = Offset(size.width - cutCornerSize.toPx(), -100f),
                     size = Size(cutCornerSize.toPx() + 100f, cutCornerSize.toPx() + 100f),

@@ -12,11 +12,11 @@ import androidx.compose.ui.unit.dp
 import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.util.NoteOrder
 import com.urahimli.cleanarchitecturenoteapp.feature_note.domain.util.OrderType
 
-@Composable                  //notlarin date, color ve s deyisme ekrani
+@Composable
 fun OrderSection(
     modifier: Modifier = Modifier,
     noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
-    onOrderChange: (NoteOrder) -> Unit          //noteOrder deyisende bu funksiya calisir
+    onOrderChange: (NoteOrder) -> Unit
 ) {
     Column(
         modifier = modifier

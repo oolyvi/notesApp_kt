@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 fun DefaultRadioButton(
     text: String,
     selected: Boolean,
-    onSelect: () -> Unit,     //icinde funksiya parametri olanda bele edirik
+    onSelect: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(

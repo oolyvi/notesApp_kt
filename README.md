@@ -6,6 +6,7 @@ Using technologies are:
 * Dagger-Hilt
 * CRUD
 * Room
+* Jetpack Compose
 
 All your notes store on local database Room. 
 

@@ -1,5 +1,5 @@
 # ar_crudNoteApp_kt
-Simple Note Application which consists of insert, update, delete note features. 
+Simple Note Application which consists of creating, reading, updating and deleting note features. 
 You can create, read, update and delete your notes whenever you want. 
 Using technologies are: 
 * MVVM

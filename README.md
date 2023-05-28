@@ -7,6 +7,7 @@ Using technologies are:
 * CRUD
 * Room
 * Jetpack Compose
+* Coroutines
 
 All your notes store on local database Room. 
 

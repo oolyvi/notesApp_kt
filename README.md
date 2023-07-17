@@ -15,5 +15,5 @@ Using technologies are:
 
 <br>
 
-# Screenshots samples from the app
+## Screenshots samples from the app
 

@@ -13,7 +13,4 @@ Using technologies are:
 * Coroutines
 
 
-<br>
-
-## Screenshots samples from the app
 

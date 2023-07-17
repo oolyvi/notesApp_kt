@@ -1,4 +1,4 @@
-# Note App
+# Notes App
 
 
 Simple Note Application which consists of creating, reading, updating and deleting note features. 
